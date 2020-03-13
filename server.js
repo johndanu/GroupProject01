@@ -8,7 +8,9 @@ const ejs = require('ejs');
 app.set('view engine', 'ejs');
 // app.use(express.bodyParser());
 const port = 8000;
+//============================/////
 
+//=======================//
 app.use('/app',  express.static(__dirname +'/app'));
 app.use(bodyParser.urlencoded({ extended: true }));
 

@@ -17,9 +17,7 @@ module.exports = function(app, db) {
 
       }
   });});
-
-
-
+  //=====//====//==
  app.get('/units/:id', (req, res) => {
    const id = req.params.id;
    const details = { '_id': new ObjectID(id) };
@@ -145,5 +143,32 @@ app.post('/tutor',(req, res)=>{
  // app.post('/subject', (req, res)=>{
  //   console.log(req.body.School);
  // });
+
+
+
+
+app.post('/comment', (req, res)=>{
+  var comment_id = ObjectID();
+  db.collection('units').update({_id:ObjectID(req.body.unit_id)},{$push:{"comments":{_id:comment_id,name:req.body.name, comment:req.body.comment}}},(error,post)=>{
+    res.redirect('/syllabus')
+  });
+  console.log(req.body);
+})
+
+app.post('/comment_delete', (req, res)=>{
+  db.collection('units').update({_id:ObjectID(req.body.unit_id)},{$pull:{"comments":{_id:ObjectID(req.body.comment_id)}}},(error,post)=>{
+    res.redirect('/syllabus')
+  });
+  console.log(req.body);
+})
+
+app.post('/reply',(req, res)=>{
+  var reply_id = ObjectID();
+  console.log(req.body);
+  db.collection('units').update({"_id":ObjectID(req.body.unit_id), "comments._id":ObjectID(req.body.comment_id)},{$push:{"comments.$.replies":{_id:reply_id, name:req.body.name, reply:req.body.reply}}},(error, post)=>{
+    res.redirect('/syllabus')
+  })
+})
+
 
 };
