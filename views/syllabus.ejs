@@ -1,14 +1,18 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <title>syllabus page</title>
-  </head>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  ​<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+  $(".unit").hide();
+});
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
   <body>
     <nav class="navbar navbar-expand-sm bg-light navbar-light p-0   ">
        <div class="collapse navbar-collapse " style="background-color:#9c103e">
@@ -29,19 +33,21 @@
         </div>
       </nav>
 
-    <div class="container bg-1">
+    <div class="container bg-1" onload="$('.unit').hide()">
       <div class="row p-2">
 
 
-    <div class="col-8 p-2 m-auto ">
+    <div class="col-11 p-2 m-auto" style="background-color:#f5cece">
     <% units.forEach(function (units) { %>
+      <h1 class="p-2"><%= units.title %></h2>
+        <button type="button" class="btn btn-dark" name="button" onclick="$('#<%= units._id %>').toggle(500)">Show the lesson</button>
+        <div  id="<%= units._id %>" class="unit" >
+      <div class="p-2">
 
-<div class="p-2">
-  <h1 class="p-2"><%= units.title %></h2>
-    <p><%= units.description %></p>
-<iframe width="500px" height="250px" src="<%= units.urlid %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-</div>
+            <p><%= units._id %></p>
+            <p><%= units.description %></p>
+          <iframe width="500px" height="250px" src="<%= units.urlid %>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
 
       <div class="container bg-1 w-75">
         <form class="" action="/comment" method="post">
@@ -52,18 +58,16 @@
         </form>
       </div>
       <div class="card">
-  <div class="card-body">
-    This is some text within a card body.
-  </div>
 </div>
       <%if (units.comments) {%>
         <% units.comments.forEach((comments)=>{%>
+          <div class="card">
           <p> <b><%= comments.name %></b> </p>
           <p><%= comments.comment %></p>
           <form action="/comment_delete" method="post">
             <input type="hidden" name="unit_id" value="<%=units._id%>">
             <input type="hidden" name="comment_id" value="<%=comments._id%>">
-            <button type="submit" name="button" >delete</button>
+            <button type="submit" name="button" class="btn btn-dark">delete</button>
           </form>
           <form class="" action="/reply" method="post">
             <input type="hidden" name="unit_id" value="<%=units._id%>">
@@ -81,6 +85,8 @@
             <%})%>
           <%}%>
         <%})%>
+      </div>
+    </div>
         <p></p>
       <%}%>
 
