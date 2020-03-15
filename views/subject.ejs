@@ -3,10 +3,23 @@
   <head>
     <meta charset="utf-8">
     <script src="app/public/js/jquery-3.2.1.js"></script>
-  ​<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script> -->
+    ​<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title></title>
-  </head>
-  <body>
+    <style media="screen">
+    footer {
+     position:fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: #9C103E;
+     color: white;
+     text-align: center;
+     height: 9%;
+  }
+    </style>
+    </head>
+  <body>​
     <div class="container-fluid navbar-expand-lg shadow m-0 p-0 mr-0 bg-lighter"  >
          <nav class="navbar navbar-expand-sm bg-light navbar-light p-0   ">
             <div class="collapse navbar-collapse " style="background-color:#9c103e">
@@ -27,31 +40,43 @@
              </div>
            </nav>
        </div>
-<br>
+<div style="height:30px;"></div>
+
     <% subjects.forEach(function (subjects) { %>
-<!-- ​    <div class="m-auto"> -->
-  <div class="col-md-3 cards float-left">
-    <div class="card border-danger mx-sm-1 p-3">
-      <div class="text-info text-center mt-3">
-        <div class="text-info text-center mt-2">
-          <div class="card-img m-0 p-0">
-    <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.planitplus.net%2FSchools%2FOptionChoices%2F&psig=AOvVaw0pS1eUm0unYmJs9cneJSXH&ust=1584003417146000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjk8dyGkugCFQAAAAAdAAAAABAD" alt="banner" width="100%" class="card-img-top rounded p-0 m-0">
-  </div>
-        <a href="/tutor" onclick="sendsubid('<%= subjects.subjectid %>')"><h1><%= subjects.subject %></h1></a>
-        <p id="subject"><%= subjects.subjectid %></p>
+​<div class="col-md-3 cards float-left my-2">
+  <div class="card border-danger mx-sm-1 p-3">
+    <div class="text-info text-center mt-3">
+      <div class="text-danger text-center mt-2">
+        <div class="card-img m-0 p-0">
+  <img src="app/views/sir.jpeg" alt="banner" width="100%" class="img-circle" >
+</div>
+          <a href="/tutor" onclick="sendsubid('<%= subjects.subjectid %>')"><h1><%= subjects.subject %></h1></a>
+          <p><%= subjects.subjectid %></p>
+        </div>
       </div>
     </div>
   </div>
-  </div>
-<!-- </div> -->
     <% }) %>
+​
     <script type="text/javascript">
       function sendsubid(sid) {
         var subject = sid;
         var params = "subject="+subject;
-        $.post("/subject",params,function(data){
+        $.post("http://localhost:8000/subject",params,function(data){
         });
       }
+
     </script>
+
+    <!-- Footer -->
+<footer class="page-footer font-small blue">
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href="https://mdbootstrap.com/"><b> S</b>chool<b>B</b>ag</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
   </body>
 </html>

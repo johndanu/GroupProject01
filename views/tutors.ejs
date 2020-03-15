@@ -6,28 +6,56 @@
     <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script> -->
     ​<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <title></title>
+    <style media="screen">
+    footer {
+     position:fixed;
+     left: 0;
+     bottom: 0;
+     width: 100%;
+     background-color: #9C103E;
+     color: white;
+     text-align: center;
+     height: 9%;
+  }
+    </style>
   </head>
   <body>
-
+    <div class="container-fluid navbar-expand-lg shadow m-0 p-0 mr-0 bg-lighter"  >
+         <nav class="navbar navbar-expand-sm bg-light navbar-light p-0   ">
+            <div class="collapse navbar-collapse " style="background-color:#9c103e">
+                <div  class="navbar-brand title-nav logo-collapse title-nav p-3 mr-0 font-weight-bold;"style="background-color:white">
+                  <b>S</b>chool<b>B</b>ag
+                </div>
+                <div class="collapse navbar-collapse bg-muted">
+                    <ul class="navbar-nav navbar-dark p-0 ">
+                      <li class="navbar text-white">Home</a>
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right ml-auto">
+                         <li class="navbar text-white">Log in</a>
+                         </li>
+                         <li class="navbar text-white">Sign up</a>
+                         </li>
+                    </ul>
+                </div>
+             </div>
+           </nav>
+       </div>
+<br>
     <% tutors.forEach(function (tutors) { %>
-
-        <div class="m-auto">
-        <div class="col-md-3 cards float-left">
-          <div class="card border-info mx-sm-1 p-3">
-            <div class="text-info text-center mt-3">
-              <div class="text-info text-center mt-2">
+      <div class="col-md-3 cards float-left">
+        <div class="card border-danger mx-sm-1 p-3">
+          <div class="text-info text-center mt-3">
+            <div class="text-danger text-center mt-2">
+              <div class="card-img m-0 p-0">
+        <img src="app/views/sir.jpeg" alt="banner" width="100%" class="img-circle" >
+      </div>
                 <a href="/syllabus" onclick="sendtutid('<%= tutors.tutorid %>')"><h1><%= tutors.name %></h1></a>
                 <p><%= tutors.tutorid %></p>
               </div>
             </div>
-          </div>​
+          </div>
         </div>
-      </div>
-
       <% }) %>
-
-      <h1>hello</h1>
-
     <script type="text/javascript">
       function sendtutid(tid) {
         var tutor = tid;
@@ -35,8 +63,15 @@
         $.post("http://localhost:8000/tutor",params,function(data){
         });
       }
-
     </script>
-
+    <!-- Footer -->
+  <footer class="page-footer font-small blue">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-3">© 2020 Copyright:
+      <a href="https://mdbootstrap.com/"><b> S</b>chool<b>B</b>ag</a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
   </body>
 </html>

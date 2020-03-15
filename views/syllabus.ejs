@@ -4,23 +4,30 @@
     <meta charset="utf-8">
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>syllabus page</title>
-    <style media="screen">
-      body{
-        background-color: #1abc9c; /* Green */
-        color: #ffffff;
-      }
-      .bg-1{
-        background-color: rgba(39, 74, 156, 0.3);
-      }
-
-    </style>
   </head>
   <body>
-
+    <nav class="navbar navbar-expand-sm bg-light navbar-light p-0   ">
+       <div class="collapse navbar-collapse " style="background-color:#9c103e">
+           <div  class="navbar-brand title-nav logo-collapse title-nav p-3 mr-0 font-weight-bold;"style="background-color:white">
+             <b>S</b>chool<b>B</b>ag
+           </div>
+           <div class="collapse navbar-collapse bg-muted">
+               <ul class="navbar-nav navbar-dark p-0 ">
+                 <li class="navbar text-white">Home</a>
+               </ul>
+               <ul class="nav navbar-nav navbar-right ml-auto">
+                    <li class="navbar text-white">Log in</a>
+                    </li>
+                    <li class="navbar text-white">Sign up</a>
+                    </li>
+               </ul>
+           </div>
+        </div>
+      </nav>
 
     <div class="container bg-1">
       <div class="row p-2">
@@ -36,14 +43,19 @@
 
 </div>
 
-      <div class="container bg-1">
-        <form class="form-control bg-1" action="/comment" method="post">
+      <div class="container bg-1 w-75">
+        <form class="" action="/comment" method="post">
           <input  type="hidden" name="unit_id" value="<%=units._id%>">
           <input class="form-control" type="text" name="name" placeholder="Enter your name..">
           <textarea class="form-control" type="text" name="comment" placeholder="Enter your comment here.."-></textarea>
-          <button type="submit" value="submit">comment</button>
+          <button type="submit" value="submit" >comment</button>
         </form>
       </div>
+      <div class="card">
+  <div class="card-body">
+    This is some text within a card body.
+  </div>
+</div>
       <%if (units.comments) {%>
         <% units.comments.forEach((comments)=>{%>
           <p> <b><%= comments.name %></b> </p>
@@ -51,14 +63,14 @@
           <form action="/comment_delete" method="post">
             <input type="hidden" name="unit_id" value="<%=units._id%>">
             <input type="hidden" name="comment_id" value="<%=comments._id%>">
-            <button type="submit" name="button">delete</button>
+            <button type="submit" name="button" >delete</button>
           </form>
-          <form class="form-control bg-1" action="/reply" method="post">
+          <form class="" action="/reply" method="post">
             <input type="hidden" name="unit_id" value="<%=units._id%>">
             <input type="hidden" name="comment_id" value="<%=comments._id%>">
             <input type="text" name="name" placeholder="Enter your name">
             <input type="text" name="reply" placeholder="Enter your reply">
-            <button type="submit" class="btn btn-dark">reply</button>
+            <button type="submit">reply</button>
           </form>
           <% if (comments.replies){%>
             <%comments.replies.forEach((reply)=>{%>
